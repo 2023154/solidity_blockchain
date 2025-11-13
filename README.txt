@@ -1,28 +1,28 @@
-REMIX DEFAULT WORKSPACE
+PROJECT: BusRide dApp (Remix Quickstart)
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+Overview
+- `BusRide.sol` escrows each rider’s fare until the operator completes or refunds.
+- Events: `Booked`, `Completed`, `Refunded`.
 
-This workspace contains 3 directories:
+Use Remix Only
+1) Open Remix and load the workspace folder.
+2) Compiler: select `0.8.20`, enable Auto compile, compile `solidityBlockChain/BusRide.sol`.
+3) Deploy & Run:
+	- Environment: `Remix VM (Shanghai)`
+	- Contract: `BusRide`
+	- Inputs:
+	  - `_fare` (wei): e.g. `10000000000000000` (0.01 ETH)
+	  - `_capacity`: e.g. `2`
+	  - `_departureTime` (unix seconds): in browser console run `Math.floor(Date.now()/1000) + 3600` and paste the result
+	  - `_cancelWindow` (seconds): e.g. `1800`
+	- Click Deploy.
+4) Book a seat:
+	- Set Value to the exact fare (e.g., `0.01` and select `ether`, or `10000000000000000` with `wei`)
+	- Call `bookSeat()`
+5) Complete or refund:
+	- As operator, call `completeRide(riderAddress)` to release funds
+	- Or call `cancelByOperator(riderAddress)` to refund rider
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
-
-SCRIPTS
-
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
-
-For the deployment of any other contract, just update the contract name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
-
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
-
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
-
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+Troubleshooting
+- “Departure must be future”: use a future `_departureTime` from the console.
+- UI timeouts: reload Remix, increase Settings → Request Timeout, or switch browser.
