@@ -22,9 +22,9 @@ contract BusRide {
         Status status;
         uint256 amount;
     }
-
-    address payable public operator = payable(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4); // Fixed operator address
-    address public constant passenger = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2; // Fixed passenger address
+    //addresses for operators and passenger settled
+    address payable public operator = payable(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4); 
+    address public constant passenger = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2; 
 
     uint256 public fare;         // exact amount riders must send per seat
     uint256 public capacity;     // max seats available
