@@ -14,6 +14,12 @@ contract BusRide {
     uint256 public seatsBooked;
     uint256 public cancelWindow; // placeholder not enforced with time
 
+    //gas estimated 1728480
+    //value is (the same as the fare to book the seat) 1000
+    //fare 1000
+    //capacity 50
+    //cancelwindow 0
+
     mapping(address => Booking) public bookings;
 
     event Booked(address indexed rider, uint256 amount);
